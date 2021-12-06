@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
@@ -72,6 +72,7 @@ namespace Random
         }
 
         private static readonly HttpClient client = new HttpClient();
+        
         private async void Log(string date, string name, string question, string result)
         {
 
@@ -80,7 +81,12 @@ namespace Random
             using (var webClient = new WebClient())
             {
                 //http://web1129.craft-host.ru/rand.php?date=22222&name=2&question=23&result=false
-                string lurl = url + "?date=\"" + date + "\"&name=\"" + name + "\"&question=\"" + question + "\"&result=\"" + result + "\"";
+                try {
+                    string lurl = url + "?date=\"" + date + "\"&name=\"" + name + "\"&question=\"" + question + "\"&result=\"" + result + "\"";
+                }
+                catch (e) {
+                    
+                }
 
                 var response = webClient.DownloadString(lurl);
             }
